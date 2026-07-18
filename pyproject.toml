@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "deterministic-csv-cleaner"
+version = "0.1.0"
+description = "Deterministic CSV deduplication with an auditable JSON summary"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "xardas-sys"}]
+dependencies = []
+
+[project.scripts]
+csv-cleaner = "csv_cleaner.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
