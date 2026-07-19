@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A deterministic CSV cleanup and data-quality service with reproducible evidence.">
+  <title>CSV Clean — reproducible CSV cleanup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#top" aria-label="CSV Clean home">CSV / CLEAN</a>
+    <nav aria-label="Primary navigation">
+      <a href="#example">Example</a>
+      <a href="#scope">Scope</a>
+      <a href="https://github.com/xardas-sys/csv-cleaner">Source</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Reproducible data cleanup</p>
+        <h1>Clean CSVs.<br>Clear evidence.</h1>
+        <p class="lede">A bounded service for deduplication, validation, and documented before-and-after results—without production-system access.</p>
+        <div class="actions">
+          <a class="button primary" href="#example">Review the worked example</a>
+          <a class="button secondary" href="https://github.com/xardas-sys/csv-cleaner">Inspect the implementation</a>
+        </div>
+      </div>
+      <aside class="hero-proof" aria-label="Example audit summary">
+        <div class="code-head"><span>audit-summary.json</span><span>verified</span></div>
+        <pre><code><span>"rows_read"</span>: 12,
+<span>"rows_written"</span>: 8,
+<span>"duplicates_removed"</span>: 4,
+<span>"key_columns"</span>: ["customer_id"],
+<span>"keep"</span>: "last"</code></pre>
+      </aside>
+    </section>
+
+    <section class="metrics" aria-label="Starter service facts">
+      <div><strong>10,000</strong><span>rows in the starter scope</span></div>
+      <div><strong>2 days</strong><span>starter delivery target</span></div>
+      <div><strong>SHA-256</strong><span>input and output evidence</span></div>
+      <div><strong>0</strong><span>runtime dependencies</span></div>
+    </section>
+
+    <section class="section process" aria-labelledby="process-title">
+      <div class="section-heading">
+        <p class="eyebrow">How the work stays controlled</p>
+        <h2 id="process-title">Rules first. Changes second.</h2>
+      </div>
+      <ol class="steps">
+        <li><span>01</span><h3>Preserve</h3><p>The original file remains untouched. Work happens on a separate copy.</p></li>
+        <li><span>02</span><h3>Agree</h3><p>Record keys, duplicate retention, formats, and acceptance checks are explicit.</p></li>
+        <li><span>03</span><h3>Transform</h3><p>Deterministic Python applies only the agreed cleaning rules.</p></li>
+        <li><span>04</span><h3>Reconcile</h3><p>Input rows, output rows, removals, and hashes are reported together.</p></li>
+      </ol>
+    </section>
+
+    <section class="section example" id="example" aria-labelledby="example-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">Synthetic worked example</p>
+          <h2 id="example-title">Twelve rows become eight—by an explicit rule.</h2>
+        </div>
+        <p>Four customer IDs appeared twice. The agreed rule retained the most recently updated row for each ID. Every name is fictional and every email uses the reserved <code>.test</code> domain.</p>
+      </div>
+      <div class="comparison">
+        <article>
+          <header><h3>Before</h3><strong>12 rows</strong></header>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Name</th><th>Plan</th><th>Updated</th></tr></thead>
+              <tbody>
+                <tr><td>C-1001</td><td>Alice Carter</td><td>basic</td><td>Jun 01</td></tr>
+                <tr><td>C-1002</td><td>Ben Turner</td><td>pro</td><td>Jun 02</td></tr>
+                <tr class="muted-row"><td colspan="4">… six unchanged rows …</td></tr>
+                <tr class="duplicate"><td>C-1002</td><td>Ben Turner</td><td>business</td><td>Jun 10</td></tr>
+                <tr class="duplicate"><td>C-1001</td><td>Alice Carter</td><td>pro</td><td>Jun 12</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <div class="arrow" aria-hidden="true">→</div>
+        <article>
+          <header><h3>After</h3><strong>8 rows</strong></header>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Name</th><th>Plan</th><th>Updated</th></tr></thead>
+              <tbody>
+                <tr><td>C-1002</td><td>Ben Turner</td><td>business</td><td>Jun 10</td></tr>
+                <tr><td>C-1005</td><td>Emma Wilson</td><td>pro</td><td>Jun 11</td></tr>
+                <tr><td>C-1001</td><td>Alice Carter</td><td>pro</td><td>Jun 12</td></tr>
+                <tr><td>C-1008</td><td>Henry Adams</td><td>business</td><td>Jun 13</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+      <div class="evidence-strip">
+        <div><span>Input SHA-256</span><code>8df280cba47d…c4f8bce</code></div>
+        <div><span>Output SHA-256</span><code>7f56fe5753e4…f4447e4</code></div>
+        <a href="portfolio-sample.pdf">Download the three-page evidence PDF</a>
+      </div>
+    </section>
+
+    <section class="section scope" id="scope" aria-labelledby="scope-title">
+      <div class="section-heading">
+        <p class="eyebrow">Starter scope</p>
+        <h2 id="scope-title">Small enough to verify properly.</h2>
+      </div>
+      <div class="scope-grid">
+        <article class="offer-card">
+          <div class="offer-head"><div><p>Fixed starter</p><h3>150 PLN</h3></div><span>2 business days</span></div>
+          <ul>
+            <li>One CSV, up to 10,000 rows or 5 MB</li>
+            <li>Cleaned CSV with the source preserved</li>
+            <li>Duplicate and row-count reconciliation</li>
+            <li>Concise data-quality report</li>
+            <li>One revision within the agreed rules</li>
+          </ul>
+          <p class="fine-print">Marketplace fees, taxes, and contract deductions depend on the settlement platform. Work starts only after a funded agreement and accepted input.</p>
+        </article>
+        <article class="boundaries">
+          <h3>Good fit</h3>
+          <p>CRM exports, surveys, product catalogs, public datasets, and recurring spreadsheet inputs.</p>
+          <h3>Not accepted</h3>
+          <p>Credential sharing, unlawful data, academic dishonesty, security testing, or work requiring private production access.</p>
+          <h3>Before work starts</h3>
+          <p>The record key, retention rule, output format, data sensitivity, and acceptance checks must be confirmed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section evidence" aria-labelledby="evidence-title">
+      <div>
+        <p class="eyebrow">Public proof</p>
+        <h2 id="evidence-title">Inspect the method, not a marketing claim.</h2>
+      </div>
+      <div class="evidence-links">
+        <a href="https://github.com/xardas-sys/csv-cleaner"><span>Source code</span><strong>Python standard library only</strong></a>
+        <a href="https://github.com/xardas-sys/csv-cleaner/tree/main/tests"><span>Test suite</span><strong>Eight deterministic unit tests</strong></a>
+        <a href="portfolio-sample.pdf"><span>Portfolio PDF</span><strong>Worked example and hashes</strong></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>CSV / CLEAN</span>
+    <p>Public implementation evidence. Client work is accepted only through an agreed, funded marketplace contract.</p>
+  </footer>
+</body>
+</html>
