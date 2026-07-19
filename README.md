@@ -2,6 +2,8 @@
 
 A small Python 3 CLI that removes duplicate CSV rows by one or more key columns and emits a JSON audit summary. It is designed for reproducible agent-delivered data-cleaning jobs: no network calls, credentials, telemetry, or runtime dependencies.
 
+[View the worked service portfolio](https://xardas-sys.github.io/csv-cleaner/), including a synthetic before/after example, delivery scope, and downloadable evidence PDF.
+
 ## Run
 
 ```bash
@@ -53,4 +55,3 @@ The corresponding marketplace offer covers one CSV schema up to 50 MB, configura
 ## License
 
 MIT
-
